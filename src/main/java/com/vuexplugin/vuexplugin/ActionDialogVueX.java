@@ -64,7 +64,13 @@ public class ActionDialogVueX extends BaseListPopupStep<String> {
     private void makeState(){
         StringBuilder state = new StringBuilder ();
         String documentText = document.getText (), str;
-        String[] params = selectedValueInState.split (",");
+        String[] params;
+        if(selectedValueInState.indexOf (',')!=-1) {
+            params = selectedValueInState.split (",");
+        }else{
+            params = new String[]{selectedValueInState};
+        }
+
         String fileName = getFileName();
         for (String param :params) {
             str = firstLetterToUpperCase (param);
@@ -103,10 +109,14 @@ public class ActionDialogVueX extends BaseListPopupStep<String> {
     private void makeGetters(){
         StringBuilder
                 getters = new StringBuilder (),
-                mapGetters = new StringBuilder()
-                ;
+                mapGetters = new StringBuilder();
         String documentText = document.getText (), str;
-        String[] params = selectedValueInState.split (",");
+        String[] params;
+        if(selectedValueInState.indexOf (',')!=-1) {
+            params = selectedValueInState.split (",");
+        }else{
+            params = new String[]{selectedValueInState};
+        }
         mapGetters.append ("//...mapGetters({\n\t");
         String fileName = getFileName();
         for (String param :params) {
@@ -125,7 +135,12 @@ public class ActionDialogVueX extends BaseListPopupStep<String> {
                 mapMutations = new StringBuilder()
                         ;
         String documentText = document.getText (), str;
-        String[] params = selectedValueInState.split (",");
+        String[] params;
+        if(selectedValueInState.indexOf (',')!=-1) {
+            params = selectedValueInState.split (",");
+        }else{
+            params = new String[]{selectedValueInState};
+        }
         mapMutations.append ("//...mapMutations({\n\t");
         String fileName = getFileName();
         for (String param :params) {
